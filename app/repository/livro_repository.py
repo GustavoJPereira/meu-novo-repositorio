@@ -1,13 +1,13 @@
+from app.repository.in_memory_table import InMemoryTable
+
+
 class LivroRepository:
     def __init__(self):
-        if hasattr("_inicializado"):
-            return
-        _inicializado = True
-        self.table = self.InMemoryTable()
+        self.table = InMemoryTable()
 
     def addLivro(self, livro):
         return self.table.newRegistro(livro)
-    
+
     def getLivro(self, id):
         return self.table.getRegistro(id)
 
@@ -18,4 +18,7 @@ class LivroRepository:
         return self.table.getAll()
 
     def getDisponiveis(self):
-        return [reg for reg in self.table.getAll() if not reg.emprestar_para]
+        return [reg for reg in self.table.getAll() if not reg.is_emprestado()]
+
+
+livro_repository = LivroRepository()

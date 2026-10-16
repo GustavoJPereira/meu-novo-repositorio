@@ -1,26 +1,28 @@
 class InMemoryTable():
-        def __init__(self):
-            self.lastId = -1;
-            self.storage = {};
+    def __init__(self):
+        self.lastId = -1
+        self.storage = {}
 
-        def _nextId(self):
-            self.lastId += 1;
-            return self.lastId;
+    def _nextId(self):
+        self.lastId += 1
+        return self.lastId
 
-        def newRegistro(self, registro):
-            id = _nextId()
-            registro.id = id
-            self.storage[id] == registro
-        
-        def getRegistro(self, id):
-            if not self.storage[id]:
-                raise Exception("id nao encontrado")
-            return self.storage[id]
-    
-        def attRegistro(self, id, regitro):
-            getRegistro(id)
-            registro.id = id
-            self.storage[id] = registro
+    def newRegistro(self, registro):
+        id = self._nextId()
+        registro.id = id
+        self.storage[id] = registro
+        return registro
 
-        def getAll(self):
-             return list(self.storage.values())
+    def getRegistro(self, id):
+        if id not in self.storage:
+            raise KeyError("id nao encontrado")
+        return self.storage[id]
+
+    def attRegistro(self, id, registro):
+        self.getRegistro(id)
+        registro.id = id
+        self.storage[id] = registro
+        return registro
+
+    def getAll(self):
+        return list(self.storage.values())

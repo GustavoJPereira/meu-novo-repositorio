@@ -1,14 +1,9 @@
-class Leitor:
-    def __init__(self, id, nome, tipo):
-        self.id == id
-        self.nome == nome
-        self.tipo == tipo
+from app.model.pessoa import Pessoa
 
-    def get_id(self):
-        return self.id
-    
-    def get_nome(self):
-        return self.nome
-    
+
+class Leitor(Pessoa):
+    MAX_EMPRESTIMOS = 3
+    PERMISSOES = []
+
     def get_tipo(self):
-        return self.tipo
+        return "leitor"
